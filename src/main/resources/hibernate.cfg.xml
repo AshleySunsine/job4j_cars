@@ -18,9 +18,15 @@
         <property name="use_sql_comments">true</property>
         <property name="hibernate.jdbc.time_zone"> Europe/Moscow</property>
 
-        <mapping class="ru.job4j.models.Car"/>
-        <mapping class="ru.job4j.models.Engine"/>
-        <mapping class="ru.job4j.models.Driver"/>
+        <mapping class="ru.job4j.models.ex.Car"/>
+        <mapping class="ru.job4j.models.ex.Engine"/>
+        <mapping class="ru.job4j.models.ex.Driver"/>
+
+        <mapping class="ru.job4j.models.Author"/>
+        <mapping class="ru.job4j.models.Advert"/>
+        <mapping class="ru.job4j.models.Foto"/>
+        <mapping class="ru.job4j.models.BodyType"/>
+        <mapping class="ru.job4j.models.Mark"/>
 
     </session-factory>
 </hibernate-configuration>
