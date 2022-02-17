@@ -45,7 +45,7 @@ public class Author {
     }
 
     public void setAdvrtList(List<Advert> advrtList) {
-        this.advrtList = advrtlist;
+        this.advrtList = advrtList;
     }
 
     @Override
