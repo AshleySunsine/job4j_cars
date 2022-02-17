@@ -9,14 +9,14 @@ public class Mark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String mark_name;
+    String markName;
 
     public Mark() {
     }
 
-    public Mark(int id, String mark_name) {
+    public Mark(int id, String markName) {
         this.id = id;
-        this.mark_name = mark_name;
+        this.markName = markName;
     }
 
     public int getId() {
@@ -27,24 +27,28 @@ public class Mark {
         this.id = id;
     }
 
-    public String getMark_name() {
-        return mark_name;
+    public String getMarkName() {
+        return markName;
     }
 
-    public void setMark_name(String mark_name) {
-        this.mark_name = mark_name;
+    public void setMarkName(String markName) {
+        this.markName = markName;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Mark mark = (Mark) o;
-        return id == mark.id && Objects.equals(mark_name, mark.mark_name);
+        return id == mark.id && Objects.equals(markName, mark.markName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, mark_name);
+        return Objects.hash(id, markName);
     }
 }

@@ -13,15 +13,15 @@ public class Author {
     String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Advert> advrt_list = new ArrayList<>();
+    List<Advert> advrtList = new ArrayList<>();
 
     public Author() {
     }
 
-    public Author(int id, String name, List<Advert> advrt_list) {
+    public Author(int id, String name, List<Advert> advrtList) {
         this.id = id;
         this.name = name;
-        this.advrt_list = advrt_list;
+        this.advrtList = advrtList;
     }
 
     public int getId() {
@@ -40,24 +40,28 @@ public class Author {
         this.name = name;
     }
 
-    public List<Advert> getAdvrt_list() {
-        return advrt_list;
+    public List<Advert> getAdvrtList() {
+        return advrtList;
     }
 
-    public void setAdvrt_list(List<Advert> advrt_list) {
-        this.advrt_list = advrt_list;
+    public void setAdvrtList(List<Advert> advrtList) {
+        this.advrtList = advrtlist;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Author author = (Author) o;
-        return id == author.id && Objects.equals(name, author.name) && Objects.equals(advrt_list, author.advrt_list);
+        return id == author.id && Objects.equals(name, author.name) && Objects.equals(advrtList, author.advrtList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, advrt_list);
+        return Objects.hash(id, name, advrtList);
     }
 }

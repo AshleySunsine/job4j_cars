@@ -38,8 +38,12 @@ public class BodyType {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         BodyType bodyType = (BodyType) o;
         return id == bodyType.id && Objects.equals(bodyTypeName, bodyType.bodyTypeName);
     }

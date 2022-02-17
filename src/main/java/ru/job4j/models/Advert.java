@@ -97,8 +97,12 @@ public class Advert {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Advert advert = (Advert) o;
         return id == advert.id && Objects.equals(description, advert.description) && Objects.equals(mark, advert.mark) && Objects.equals(bodyType, advert.bodyType) && Objects.equals(fotos, advert.fotos) && Objects.equals(author, advert.author);
     }
