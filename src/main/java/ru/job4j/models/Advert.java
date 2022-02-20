@@ -3,6 +3,7 @@ package ru.job4j.models;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +13,9 @@ public class Advert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     @ManyToOne
     @JoinColumn(name = "mark_id")
@@ -45,6 +49,7 @@ public class Advert {
         this.bodyType = bodyType;
         this.fotos = fotos;
         this.author = author;
+
     }
 
     public int getId() {

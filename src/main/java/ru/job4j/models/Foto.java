@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
