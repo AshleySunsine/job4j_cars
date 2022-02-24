@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "advrt")
+@Table(name = "advrts")
 public class Advert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,26 +17,23 @@ public class Advert {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mark_id")
     @NotNull
-    @Column(nullable = false)
     private Mark mark;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bodytype_id")
     @NotNull
-    @Column(nullable = false)
     private BodyType bodyType;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pathsOfFoto_id")
     private Foto fotos;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     @NotNull
-    @Column(nullable = false)
     private Author author;
 
     public Advert() {
@@ -49,7 +46,6 @@ public class Advert {
         this.bodyType = bodyType;
         this.fotos = fotos;
         this.author = author;
-
     }
 
     public int getId() {
@@ -115,5 +111,18 @@ public class Advert {
     @Override
     public int hashCode() {
         return Objects.hash(id, description, mark, bodyType, fotos, author);
+    }
+
+    @Override
+    public String toString() {
+        return "Advert{"
+               + "id=" + id
+               + ", description='" + description + '\''
+               + ", created=" + created
+               + ", mark=" + mark
+               + ", bodyType=" + bodyType
+               + ", fotos=" + fotos
+               + ", author=" + author
+               + '}';
     }
 }

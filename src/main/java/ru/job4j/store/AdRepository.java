@@ -35,6 +35,24 @@ public class AdRepository {
         }
     }
 
+    public boolean addAdvert(Advert advert) {
+        this.tx(session -> {
+            session.save(advert);
+            return true;
+        });
+        return true;
+    }
+
+    public boolean deleteAdvert(int id) {
+        this.tx(session -> {
+            session.createQuery("delete from adverts where id = :aid")
+                    .setParameter("aid", id)
+                    .executeUpdate();
+            return true;
+        });
+        return true;
+    }
+
     public List<Advert> getAdvertByDay() {
         List<Advert> ads = new ArrayList<>();
         this.tx(session -> {
@@ -65,18 +83,16 @@ public class AdRepository {
         return ads;
     }
 
-    public List<Advert> getAdvertByMark(Mark mark) {
+    public List<Advert> getAdvertByMark(String markName) {
         List<Advert> ads = new ArrayList<>();
-        this.tx(session -> {
-            return session.createQuery("select a from Advert a "
-                    + "join fetch a.author "
-                    + "join fetch a.bodyType "
-                    + "join fetch a.fotos "
-                    + "join fetch a.mark "
-                    + "where a.mark.markName = :aMarkName", Advert.class)
-                    .setParameter("aMarkName", mark.getMarkName())
-                    .getResultList();
-        });
+        ads = this.tx(session -> session.createQuery("select a from Advert a "
+                + "join fetch a.author "
+                + "join fetch a.bodyType "
+                + "join fetch a.fotos "
+                + "join fetch a.mark "
+                + "where a.mark.markName = :aMarkName", Advert.class)
+                .setParameter("aMarkName", markName)
+                .getResultList());
         return ads;
     }
 

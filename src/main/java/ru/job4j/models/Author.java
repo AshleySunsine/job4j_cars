@@ -18,10 +18,9 @@ public class Author {
     public Author() {
     }
 
-    public Author(int id, String name, List<Advert> advrtList) {
+    public Author(int id, String name) {
         this.id = id;
         this.name = name;
-        this.advrtList = advrtList;
     }
 
     public int getId() {
