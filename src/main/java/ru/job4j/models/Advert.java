@@ -124,5 +124,6 @@ public class Advert {
                + ", fotos=" + fotos
                + ", author=" + author
                + '}';
+
     }
 }
