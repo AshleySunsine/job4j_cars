@@ -12,12 +12,10 @@
         <property name="hibernate.connection.characterEncoding">UTF-8</property>
 
         <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.jdbc.time_zone"> Europe/Moscow</property>
 
-
-        <mapping class="ru.job4j.models.Mark"/>
+        <mapping class="ru.job4j.models.Car"/>
         <mapping class="ru.job4j.models.Advert"/>
-        <mapping class="ru.job4j.models.BodyType"/>
-        <mapping class="ru.job4j.models.Foto"/>
         <mapping class="ru.job4j.models.Author"/>
 
     </session-factory>

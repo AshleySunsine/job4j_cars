@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "authors")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +57,7 @@ public class Author {
             return false;
         }
         Author author = (Author) o;
-        return id == author.id && Objects.equals(name, author.name) && Objects.equals(advrtList, author.advrtList);
+        return id == author.id && Objects.equals(name, author.name);
     }
 
     @Override

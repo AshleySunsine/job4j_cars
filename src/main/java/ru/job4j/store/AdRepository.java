@@ -6,10 +6,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.models.Advert;
-import ru.job4j.models.Mark;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 
@@ -35,17 +34,16 @@ public class AdRepository {
         }
     }
 
-    public boolean addAdvert(Advert advert) {
-        this.tx(session -> {
-            session.save(advert);
-            return true;
+    public int addAdvert(Advert advert) {
+       return this.tx(session -> {
+            Integer advertId = (Integer) session.save(advert);
+            return advertId;
         });
-        return true;
     }
 
     public boolean deleteAdvert(int id) {
         this.tx(session -> {
-            session.createQuery("delete from adverts where id = :aid")
+            session.createQuery("delete from Advert where id = :aid")
                     .setParameter("aid", id)
                     .executeUpdate();
             return true;
@@ -53,17 +51,21 @@ public class AdRepository {
         return true;
     }
 
+    public Advert getAdvertById(int advertId) {
+       return (Advert) this.tx(session -> {
+          return session.createQuery("from Advert where id = :adId")
+                   .setParameter("adId", advertId)
+                  .uniqueResult();
+        });
+    }
+
     public List<Advert> getAdvertByDay() {
-        List<Advert> ads = new ArrayList<>();
-        this.tx(session -> {
-            Calendar calend = Calendar.getInstance();
-            calend.add(Calendar.DATE, -1);
+        List<Advert> ads;
+        ads = this.tx(session -> {
+            Date calend = new Date(System.currentTimeMillis() - 86400000);
             return session.createQuery("select a from Advert a "
                    + "join fetch a.author "
-                   + "join fetch a.bodyType "
-                   + "join fetch a.fotos "
-                   + "join fetch a.mark "
-                   + "where a.created >= :calend", Advert.class)
+                   + "where (a.created >= :calend)", Advert.class)
                     .setParameter("calend", calend)
                     .getResultList();
         });
@@ -75,22 +77,16 @@ public class AdRepository {
         this.tx(session -> {
             return session.createQuery("select a from Advert a "
                     + "join fetch a.author "
-                    + "join fetch a.bodyType "
-                    + "join fetch a.fotos "
-                    + "join fetch a.mark "
-                    + "where a.fotos is not NULL", Advert.class).getResultList();
+                    + "where a.car.pathsToFoto is not NULL", Advert.class).getResultList();
         });
         return ads;
     }
 
     public List<Advert> getAdvertByMark(String markName) {
-        List<Advert> ads = new ArrayList<>();
+        List<Advert> ads;
         ads = this.tx(session -> session.createQuery("select a from Advert a "
                 + "join fetch a.author "
-                + "join fetch a.bodyType "
-                + "join fetch a.fotos "
-                + "join fetch a.mark "
-                + "where a.mark.markName = :aMarkName", Advert.class)
+                + "where a.car.markName = :aMarkName", Advert.class)
                 .setParameter("aMarkName", markName)
                 .getResultList());
         return ads;
