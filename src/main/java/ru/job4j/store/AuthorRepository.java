@@ -9,7 +9,7 @@ import ru.job4j.models.Author;
 
 import java.util.function.Function;
 
-public class UserRepository {
+public class AuthorRepository {
     private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure().build();
     private final SessionFactory sf = new MetadataSources(registry)
@@ -30,17 +30,17 @@ public class UserRepository {
         }
     }
 
-    public UserRepository() {
+    public AuthorRepository() {
     }
 
-    public int addUser(Author author) {
+    public int addAuthor(Author author) {
         return this.tx(session -> {
             Integer authorId = (Integer) session.save(author);
             return authorId;
         });
     }
 
-    public boolean deleteUser(int id) {
+    public boolean deleteAuthor(int id) {
         this.tx(session -> {
             session.createQuery("delete from Author where id = :aid")
                     .setParameter("aid", id)
@@ -50,7 +50,7 @@ public class UserRepository {
         return true;
     }
 
-    public Author getUserById(int authorId) {
+    public Author getAuthorById(int authorId) {
         return (Author) this.tx(session -> {
             return session.createQuery("from Author where id = :adId")
                     .setParameter("adId", authorId)
