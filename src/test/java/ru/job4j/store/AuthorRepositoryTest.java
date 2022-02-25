@@ -13,7 +13,7 @@ public class AuthorRepositoryTest {
 
         Author authorFromBase = authorRepository.getAuthorById(addId);
 
-        assertEquals(author,authorFromBase);
+        assertEquals(author, authorFromBase);
     }
 
     @Test

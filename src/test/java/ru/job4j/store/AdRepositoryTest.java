@@ -16,7 +16,7 @@ public class AdRepositoryTest {
         String description = "description1";
         Car car = new Car("mark1", "body1", "d:/a");
 
-        Advert advert = new Advert(0, description,car, author);
+        Advert advert = new Advert(0, description, car, author);
 
         AdRepository adRepository = new AdRepository();
         int addId = adRepository.addAdvert(advert);

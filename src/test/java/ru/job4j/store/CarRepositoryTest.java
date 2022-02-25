@@ -14,7 +14,7 @@ public class CarRepositoryTest {
 
         Car carFromBase = carRepository.getCarById(addId);
 
-        assertEquals(car,carFromBase);
+        assertEquals(car, carFromBase);
     }
 
     @Test
