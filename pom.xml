@@ -16,7 +16,15 @@
   </properties>
 
   <profiles>
-
+    <profile>
+      <id>production</id>
+      <properties>
+        <db.url>jdbc:postgresql://127.0.0.1:5432/carAdvarts</db.url>
+        <db.username>postgres</db.username>
+        <db.password>password</db.password>
+        <db.driver>org.postgresql.Driver</db.driver>
+      </properties>
+    </profile>
   </profiles>
 
   <dependencies>
@@ -159,7 +167,7 @@
           <version>2.2</version>
           <configuration>
             <port>8081</port>
-            <path>/cars</path>
+            <path>/job4j_cars</path>
           </configuration>
         </plugin>
         <plugin>

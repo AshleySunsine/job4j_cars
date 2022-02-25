@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class AdRepositoryTest {
     @Test
     public void whenAdd() {
-        Author author = new Author(0, "author1");
+        Author author = new Author("author1", "aaa", "aaa");
         String description = "description1";
         Car car = new Car("mark1", "body1", "d:/a");
 
@@ -28,7 +28,7 @@ public class AdRepositoryTest {
 
     @Test
     public void whenGetByMark() {
-        Author author = new Author(0, "author1");
+        Author author = new Author("author1", "aaa", "aaa");
         String description = "description1";
         Car car = new Car("mark1", "body1", "d:/a");
         Advert advert = new Advert(0, description, car, author);
@@ -42,7 +42,7 @@ public class AdRepositoryTest {
 
     @Test
     public void whenDeleteAdvert() {
-        Author author = new Author(0, "author1");
+        Author author = new Author("author1", "aaa", "aaa");
         String description = "description1";
         Car car = new Car("mark1", "body1", "d:/a");
         Advert advert = new Advert(0, description, car, author);
@@ -60,7 +60,7 @@ public class AdRepositoryTest {
 
     @Test
     public void whenGetByDay() {
-        Author author = new Author(0, "author1");
+        Author author = new Author("author1", "aaa", "aaa");
         String description = "description1";
         Car car = new Car("mark1", "body1", "d:/a");
         Advert advert = new Advert(0, description, car, author);

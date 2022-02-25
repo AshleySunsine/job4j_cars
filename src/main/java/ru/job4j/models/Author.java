@@ -12,6 +12,9 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name;
+    @Column(unique = true)
+    private String email;
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<Advert> advrtList = new ArrayList<>();
@@ -19,9 +22,10 @@ public class Author {
     public Author() {
     }
 
-    public Author(int id, String name) {
-        this.id = id;
+    public Author(String name, String email, String password) {
         this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     public int getId() {
@@ -48,6 +52,22 @@ public class Author {
         this.advrtList = advrtList;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -57,11 +77,11 @@ public class Author {
             return false;
         }
         Author author = (Author) o;
-        return id == author.id && Objects.equals(name, author.name);
+        return id == author.id && Objects.equals(name, author.name) && Objects.equals(email, author.email) && Objects.equals(password, author.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, advrtList);
+        return Objects.hash(id, name, email, password, advrtList);
     }
 }

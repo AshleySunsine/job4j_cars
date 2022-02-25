@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class AuthorRepositoryTest {
     @Test
     public void whenAdd() {
-        Author author = new Author(0, "author1");
+        Author author = new Author("author1", "aaa", "aaa");
         AuthorRepository authorRepository = new AuthorRepository();
         int addId = authorRepository.addAuthor(author);
 
@@ -18,7 +18,7 @@ public class AuthorRepositoryTest {
 
     @Test
     public void whenDeleteAuthor() {
-        Author author = new Author(0, "author1");
+        Author author = new Author("author1", "aaa", "aaa");
         AuthorRepository authorRepository = new AuthorRepository();
         int addId = authorRepository.addAuthor(author);
 

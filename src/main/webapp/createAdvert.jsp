@@ -42,63 +42,44 @@
         </li>
     </div>
     <hr>
+    <div class="col-md-4 mb-3">
+        <label for="todoName">Название объявления</label>
+        <input required type="text" class="form-control" name="todoName" id="todoName" placeholder="Название объявления">
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <label for="description">Описание</label>
+        <textarea required class="form-control" id="description" name="description" rows="3"></textarea>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <label for="inputMark">Марка</label>
+        <select id="inputMark" class="form-control">
+            <option selected>Марка</option>
+            <option value="mark_1">Марка 1</option>
+            <option value="mark_2">Марка 2</option>
+            <option value="mark_3">Марка 3</option>
+            <option value="mark_4">Марка 4</option>
+        </select>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <label for="inputBody">Кузов</label>
+        <select id="inputBody" class="form-control">
+            <option selected>Кузов</option>
+            <option value="body_1">Кузов 1</option>
+            <option value="body_2">Кузов 2</option>
+            <option value="body_3">Кузов 3</option>
+            <option value="body_4">Кузов 4</option>
+        </select>
+    </div>
 
     <div class="col-md-4 mb-3">
         <div class="form-check">
-            <button id="createButton" onclick="window.location.href = '<%=request.getContextPath()%>/createAdvert.jsp'">Создать объявление</button>
-
-            <script>
-               if ("<%=request.getSession().getAttribute("user")%>" != "null") {
-                   document.getElementById('createButton').style.display = "block";
-                   } else {
-                   document.getElementById('createButton').style.display = "None";
-                       }
-            </script>
-
-
+            <button type="submit" class="btn btn-primary">Сохранить объявление</button>
         </div>
     </div>
 </form>
 
-<hr>
-
-<form>
-    <div class="col-md-7">
-        <div class="row">
-            <div class="card" style="width: 100%" name="Post">
-                <div class="card-header">
-                    Задачи:
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped table-secondary" id="notDoneTable">
-                        <thead>
-                        <tr>
-                            <th scope="col">Пользователь</th>
-                            <th scope="col">Id задачи</th>
-                            <th scope="col">Название</th>
-                            <th scope="col">Описание</th>
-                            <th scope="col">Катигория</th>
-                            <th scope="col">Дата создания</th>
-                            <th scope="col">Статус</th>
-                            <th scope="col">X</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-
-    </script>
-    <button type="button" class="btn btn-primary" onclick='ss()'>Обновить</button>
-
-</form>
 </body>
 </html>

@@ -57,4 +57,12 @@ public class AuthorRepository {
                     .uniqueResult();
         });
     }
+
+    public Author getAuthorByEmail(String email) {
+        return (Author) this.tx(session -> {
+            return session.createQuery("from Author where email = :adEmail")
+                    .setParameter("adEmail", email)
+                    .uniqueResult();
+        });
+    }
 }
