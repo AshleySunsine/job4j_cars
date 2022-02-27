@@ -82,12 +82,12 @@ public class AdRepository {
         return ads;
     }
 
-    public List<Advert> getAdvertByMark(String markName) {
+    public List<Advert> getAdvertByMarkId(int markId) {
         List<Advert> ads;
         ads = this.tx(session -> session.createQuery("select a from Advert a "
                 + "join fetch a.author "
-                + "where a.car.markName = :aMarkName", Advert.class)
-                .setParameter("aMarkName", markName)
+                + "where a.car.markId = :aMarkId", Advert.class)
+                .setParameter("aMarkId", markId)
                 .getResultList());
         return ads;
     }

@@ -26,8 +26,9 @@
 
 
 <body>
+<%=request.getSession().getAttribute("user")%>
 <form action="<%=request.getContextPath()%>/saveAdvart.do" method="post">
-    <input type="hidden"  id="userEmail" name="userEmail" value='${userEmail}'>
+
     <div class="row">
         <li class="nav-item">
             <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>

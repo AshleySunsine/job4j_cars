@@ -2,12 +2,18 @@ package ru.job4j.store;
 
 import org.junit.Test;
 import ru.job4j.models.Car;
+import ru.job4j.models.CarBody;
+import ru.job4j.models.CarMark;
+
 import static org.junit.Assert.*;
 
 public class CarRepositoryTest {
-    @Test
+   @Test
     public void whenAdd() {
-        Car car = new Car("mark1", "body1", "d:/a");
+       CarMarkAndBodyRepository carMarkAndBodyRepository = new CarMarkAndBodyRepository();
+       int bodyId = carMarkAndBodyRepository.addCarBody(new CarBody("Body_1"));
+       int markId = carMarkAndBodyRepository.addCarMark(new CarMark("mark_1"));
+       Car car = new Car(markId, bodyId, "d:/a");
 
         CarRepository carRepository = new CarRepository();
         int addId = carRepository.addCar(car);
@@ -19,7 +25,10 @@ public class CarRepositoryTest {
 
     @Test
     public void whenDeleteCar() {
-        Car car = new Car("mark1", "body1", "d:/a");
+        CarMarkAndBodyRepository carMarkAndBodyRepository = new CarMarkAndBodyRepository();
+        int bodyId = carMarkAndBodyRepository.addCarBody(new CarBody("Body_1"));
+        int markId = carMarkAndBodyRepository.addCarMark(new CarMark("mark_1"));
+        Car car = new Car(markId, bodyId, "d:/a");
         CarRepository carRepository = new CarRepository();
         int addId = carRepository.addCar(car);
 

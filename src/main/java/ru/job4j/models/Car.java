@@ -13,8 +13,10 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String markName;
-    private String bodyTypeName;
+
+    private int markId;
+
+    private int bodyTypeId;
 
     @Access(AccessType.FIELD)
     private String pathsToFoto;
@@ -24,9 +26,9 @@ public class Car {
     public Car() {
     }
 
-    public Car(String markName, String bodyTypeName, String pathsToFoto) {
-        this.markName = markName;
-        this.bodyTypeName = bodyTypeName;
+    public Car(int markId, int bodyTypeId, String pathsToFoto) {
+        this.markId = markId;
+        this.bodyTypeId = bodyTypeId;
         this.pathsToFoto = pathsToFoto;
     }
 
@@ -38,20 +40,24 @@ public class Car {
         this.id = id;
     }
 
-    public String getBodyTypeName() {
-        return bodyTypeName;
+    public int getMarkId() {
+        return markId;
     }
 
-    public void setBodyTypeName(String bodyTypeName) {
-        this.bodyTypeName = bodyTypeName;
+    public void setMarkId(int markId) {
+        this.markId = markId;
     }
 
-    public String getMarkName() {
-        return markName;
+    public int getBodyTypeId() {
+        return bodyTypeId;
     }
 
-    public void setMarkName(String markName) {
-        this.markName = markName;
+    public void setBodyTypeId(int bodyTypeId) {
+        this.bodyTypeId = bodyTypeId;
+    }
+
+    public void setPathsToFoto(String pathsToFoto) {
+        this.pathsToFoto = pathsToFoto;
     }
 
     public ArrayList<String> getPathsToFoto() {
@@ -73,21 +79,11 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return id == car.id && Objects.equals(markName, car.markName) && Objects.equals(bodyTypeName, car.bodyTypeName) && Objects.equals(pathsToFoto, car.pathsToFoto);
+        return id == car.id && markId == car.markId && bodyTypeId == car.bodyTypeId && Objects.equals(pathsToFoto, car.pathsToFoto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, markName, bodyTypeName, pathsToFoto);
-    }
-
-    @Override
-    public String toString() {
-        return "Car{"
-               + "id=" + id
-               + ", markName='" + markName + '\''
-               + ", bodyTypeName='" + bodyTypeName + '\''
-               + ", pathsToFoto='" + pathsToFoto + '\''
-               + '}';
+        return Objects.hash(id, markId, bodyTypeId, pathsToFoto);
     }
 }
