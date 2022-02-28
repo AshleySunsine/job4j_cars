@@ -6,6 +6,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.models.Advert;
+import ru.job4j.models.Car;
+import ru.job4j.models.CarBody;
+import ru.job4j.models.CarMark;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,8 +39,28 @@ public class AdRepository {
 
     public int addAdvert(Advert advert) {
        return this.tx(session -> {
+            Car car = advert.getCar();
+            CarBody carBody = (CarBody) session.createQuery("from CarBody where id = :adId")
+                    .setParameter("adId", car.getBodyTypeId())
+                    .uniqueResult();
+            CarMark carMark = (CarMark) session.createQuery("from CarMark where id = :adId")
+                    .setParameter("adId", car.getMarkId())
+                    .uniqueResult();
+            System.out.println(carBody.getBodyType() + " " + carMark.getMark());
+            car.setBodyType(carBody.getBodyType());
+            car.setMarkName(carMark.getMark());
             Integer advertId = (Integer) session.save(advert);
             return advertId;
+
+        });
+    }
+
+    public void setPhotoAdvert(int advertId, String photoPath) {
+        this.tx(session -> {
+            Advert advert = session.load(Advert.class, advertId);
+            Car car = advert.getCar();
+            car.addFoto(photoPath);
+            return 1;
         });
     }
 
@@ -88,6 +111,13 @@ public class AdRepository {
                 + "join fetch a.author "
                 + "where a.car.markId = :aMarkId", Advert.class)
                 .setParameter("aMarkId", markId)
+                .getResultList());
+        return ads;
+    }
+
+    public List<Advert> getAllAdvert() {
+        List<Advert> ads;
+        ads = this.tx(session -> session.createQuery("select a from Advert a", Advert.class)
                 .getResultList());
         return ads;
     }

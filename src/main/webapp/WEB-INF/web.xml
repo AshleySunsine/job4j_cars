@@ -41,4 +41,49 @@
     <url-pattern>/logout.do</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.IndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/IndexList</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GetForMarksServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.GetMarksServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetForMarksServlet</servlet-name>
+    <url-pattern>/listMarks</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GetForBodiesServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.GetBodiesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetForBodiesServlet</servlet-name>
+    <url-pattern>/listBodies</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SaveAdvartServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.SaveAdvartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveAdvartServlet</servlet-name>
+    <url-pattern>/saveAdvart.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>PhotoUploadServlet</servlet-name>
+    <servlet-class>ru.job4j.servlets.PhotoUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PhotoUploadServlet</servlet-name>
+    <url-pattern>/uploadImageAdvart.do</url-pattern>
+  </servlet-mapping>
+
 </web-app>

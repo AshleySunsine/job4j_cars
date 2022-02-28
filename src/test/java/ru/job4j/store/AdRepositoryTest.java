@@ -19,7 +19,7 @@ public class AdRepositoryTest {
         Author author = new Author("author1", "aaa", "aaa");
         String description = "description1";
 
-        Advert advert = new Advert(0, description, car, author);
+        Advert advert = new Advert(description, car, author);
 
         AdRepository adRepository = new AdRepository();
         int addId = adRepository.addAdvert(advert);
@@ -38,7 +38,7 @@ public class AdRepositoryTest {
         int bodyId = carMarkAndBodyRepository.addCarBody(new CarBody("Body_1"));
         int markId = carMarkAndBodyRepository.addCarMark(new CarMark("mark_1"));
         Car car = new Car(markId, bodyId, "d:/a");
-        Advert advert = new Advert(0, description, car, author);
+        Advert advert = new Advert(description, car, author);
         AdRepository adRepository = new AdRepository();
 
         adRepository.addAdvert(advert);
@@ -57,7 +57,7 @@ public class AdRepositoryTest {
         int markId = carMarkAndBodyRepository.addCarMark(new CarMark("mark_1"));
         Car car = new Car(markId, bodyId, "d:/a");
 
-        Advert advert = new Advert(0, description, car, author);
+        Advert advert = new Advert(description, car, author);
         AdRepository adRepository = new AdRepository();
 
         int addId = adRepository.addAdvert(advert);
@@ -80,7 +80,7 @@ public class AdRepositoryTest {
         int markId = carMarkAndBodyRepository.addCarMark(new CarMark("mark_1"));
         Car car = new Car(markId, bodyId, "d:/a");
 
-        Advert advert = new Advert(0, description, car, author);
+        Advert advert = new Advert(description, car, author);
         System.out.println(advert.getCreated());
         AdRepository adRepository = new AdRepository();
 

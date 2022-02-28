@@ -24,6 +24,42 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 
+<script>
+    function send() {
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8081/job4j_cars/IndexList",
+            dataType: "text"
+        }).done(function(data, textStatus, jqXHR) {
+            var j = JSON.parse(data);
+            j.forEach(function (item, i, arr) {
+               $('#advartTable tr:last').after('<tr><th scope="row">'
+                    + item.advertAuthorName + '</th><td>'
+                    + item.advertId + '</th><td>'
+                    + item.advertDescript + '</th><td>'
+                    + item.advertCarMark + '</th><td>'
+                    + item.advertCarbody + '</th><td>'
+                    + item.advertCreate + '</th><td>'
+                    /*+ '<input class="form-check-input" '
+                    + 'type="checkbox" id="' + item.id + '" '
+                    + 'onchange="clickTicked(' + item.id + ')"'
+                    + 'name="' + item.id + '">'
+                    + '<label class="form-check-label" for="notDone">'
+                    + 'Выполнено'
+                    + '</label>'
+                    + '</td><td>'
+                    + '<a class="btn btn-danger" onclick="clickDeleteTicked(' + item.id + ')" aria-label="Удалить">'
+                    + '<i class="fa fa-trash-o" aria-hidden="true"></i>'
+                    + '</a>'
+                    + '</td></tr>'*/);
+            });
+        });
+    }
+</script>
+
+<script>
+    send();
+</script>
 
 <body>
     <form action="<%=request.getContextPath()%>/createAdvert.jsp" method="post">
@@ -70,18 +106,17 @@
                     Задачи:
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-secondary" id="notDoneTable">
+                    <table class="table table-striped table-secondary" id="advartTable">
                         <thead>
                         <tr>
                             <th scope="col">Пользователь</th>
-                            <th scope="col">Id задачи</th>
-                            <th scope="col">Название</th>
+                            <th scope="col">Id объявления</th>
                             <th scope="col">Описание</th>
-                            <th scope="col">Катигория</th>
+                            <th scope="col">Марка машины</th>
+                            <th scope="col">Тип кузова</th>
                             <th scope="col">Дата создания</th>
                             <th scope="col">Статус</th>
                             <th scope="col">X</th>
-
                         </tr>
                         </thead>
                         <tbody>
@@ -97,7 +132,7 @@
     <script>
 
     </script>
-    <button type="button" class="btn btn-primary" onclick='ss()'>Обновить</button>
+    <button type="button" class="btn btn-primary" onclick='send()'>Обновить</button>
 
 </form>
 </body>

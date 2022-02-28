@@ -44,14 +44,6 @@ public class Author {
         this.name = name;
     }
 
-    public List<Advert> getAdvrtList() {
-        return advrtList;
-    }
-
-    public void setAdvrtList(List<Advert> advrtList) {
-        this.advrtList = advrtList;
-    }
-
     public String getEmail() {
         return email;
     }

@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.PrimitiveIterator;
 
 @Entity
 @Table(name = "cars")
@@ -17,6 +18,9 @@ public class Car {
     private int markId;
 
     private int bodyTypeId;
+
+    private String markName;
+    private String bodyType;
 
     @Access(AccessType.FIELD)
     private String pathsToFoto;
@@ -56,18 +60,32 @@ public class Car {
         this.bodyTypeId = bodyTypeId;
     }
 
+    public String getMarkName() {
+        return markName;
+    }
+
+    public void setMarkName(String markName) {
+        this.markName = markName;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
+
     public void setPathsToFoto(String pathsToFoto) {
         this.pathsToFoto = pathsToFoto;
     }
 
-    public ArrayList<String> getPathsToFoto() {
-        return GSON.fromJson(pathsToFoto, ArrayList.class);
+    public String getPathsToFoto() {
+        return pathsToFoto;
     }
 
     public void addFoto(String foto) {
-        ArrayList<String> fotos = GSON.fromJson(pathsToFoto, ArrayList.class);
-        fotos.add(foto);
-        pathsToFoto = GSON.toJson(fotos);
+        pathsToFoto = foto;
     }
 
     @Override

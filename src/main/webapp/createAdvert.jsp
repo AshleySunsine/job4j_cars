@@ -24,6 +24,37 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 
+<script>
+    function sendForMarks() {
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8081/job4j_cars/listMarks",
+            dataType: "text"
+        }).done(function(data, textStatus, jqXHR) {
+            var marksList = JSON.parse(data);
+            marksList.forEach(
+                function(item, i, arr) {
+                    $('#inputMark option:last').after('<option value="' + item.id + '">' + item.mark + '</option>')
+                }
+            );
+        });
+    }
+
+    function sendForBodies() {
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8081/job4j_cars/listBodies",
+            dataType: "text"
+        }).done(function(data, textStatus, jqXHR) {
+            var bodiesList = JSON.parse(data);
+            bodiesList.forEach(
+                function(item, i, arr) {
+                    $('#inputBody option:last').after('<option value="' + item.id + '">' + item.bodyType + '</option>')
+                }
+            );
+        });
+    }
+</script>
 
 <body>
 <%=request.getSession().getAttribute("user")%>
@@ -44,8 +75,8 @@
     </div>
     <hr>
     <div class="col-md-4 mb-3">
-        <label for="todoName">Название объявления</label>
-        <input required type="text" class="form-control" name="todoName" id="todoName" placeholder="Название объявления">
+        <label for="advartName">Название объявления</label>
+        <input required type="text" class="form-control" name="advartName" id="advartName" placeholder="Название объявления">
     </div>
 
     <div class="col-md-4 mb-3">
@@ -55,23 +86,21 @@
 
     <div class="col-md-4 mb-3">
         <label for="inputMark">Марка</label>
-        <select id="inputMark" class="form-control">
+        <select id="inputMark" name="inputMark" class="form-control">
             <option selected>Марка</option>
-            <option value="mark_1">Марка 1</option>
-            <option value="mark_2">Марка 2</option>
-            <option value="mark_3">Марка 3</option>
-            <option value="mark_4">Марка 4</option>
+            <script>
+                sendForMarks()
+            </script>
         </select>
     </div>
 
     <div class="col-md-4 mb-3">
         <label for="inputBody">Кузов</label>
-        <select id="inputBody" class="form-control">
+        <select id="inputBody" name="inputBody" class="form-control">
             <option selected>Кузов</option>
-            <option value="body_1">Кузов 1</option>
-            <option value="body_2">Кузов 2</option>
-            <option value="body_3">Кузов 3</option>
-            <option value="body_4">Кузов 4</option>
+            <script>
+                sendForBodies();
+            </script>
         </select>
     </div>
 

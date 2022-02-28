@@ -6,6 +6,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.models.Car;
+import ru.job4j.models.CarBody;
+import ru.job4j.models.CarMark;
 
 import java.util.function.Function;
 
@@ -35,6 +37,15 @@ public class CarRepository {
 
     public int addCar(Car car) {
         return this.tx(session -> {
+            CarBody carBody = (CarBody) session.createQuery("from CarBody where id = :adId")
+                    .setParameter("adId", car.getBodyTypeId())
+                    .uniqueResult();
+            CarMark carMark = (CarMark) session.createQuery("from CarMark where id = :adId")
+                    .setParameter("adId", car.getMarkId())
+                    .uniqueResult();
+            System.out.println(carBody.getBodyType() + " " + carMark.getMark());
+            car.setBodyType(carBody.getBodyType());
+            car.setMarkName(carMark.getMark());
             Integer carId = (Integer) session.save(car);
             return carId;
         });

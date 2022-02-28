@@ -29,8 +29,7 @@ public class Advert {
     public Advert() {
     }
 
-    public Advert(int id, String description, Car car, Author author) {
-        this.id = id;
+    public Advert(String description, Car car, Author author) {
         this.description = description;
         this.car = car;
         this.author = author;
@@ -69,8 +68,8 @@ public class Advert {
         this.author = author;
     }
 
-    public Date getCreated() {
-        return created;
+    public String getCreated() {
+        return created.toString();
     }
 
     public void setCreated(Date created) {
